@@ -34,7 +34,7 @@ body {
 }
 
 .audio-player {
-    width: 90%; /* Szerokość na telefonie */
+    width: calc(100% - 40px); /* Gwarantowane 20px marginesu z każdej strony */
     max-width: 450px; /* Maksymalna szerokość na komputerze */
     height: var(--player-height);
     background-color: #fff;

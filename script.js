@@ -8,41 +8,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
     const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
 
-    // --- Flower Generation (Anti-Overlap) ---
-    const numberOfFlowers = 25;
-    const flowers = [];
-    const minDistance = 100; // Minimalna odległość między środkami kwiatków
-
-    function getDistance(x1, y1, x2, y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
+    // --- Flower Generation (Better Anti-Overlap) ---
+    const numberOfFlowers = 22;
+    const placedFlowers = [];
+    const flowerSize = 80; // Rozmiar kwiatka w px z CSS
+    const padding = 10; // Minimalny odstęp między kwiatkami w px
 
     for (let i = 0; i < numberOfFlowers; i++) {
-        let x, y, tooClose;
+        let x, y, overlap;
         let attempts = 0;
 
         do {
-            tooClose = false;
-            x = Math.random() * 90; // Pozostawiamy margines 10% od prawej/dołu
-            y = Math.random() * 90;
+            overlap = false;
+            // Losujemy pozycję w pikselach
+            x = Math.random() * (window.innerWidth - flowerSize);
+            y = Math.random() * (window.innerHeight - flowerSize);
             attempts++;
 
-            for (const f of flowers) {
-                if (getDistance(x, y, f.x, f.y) < minDistance / (window.innerWidth / 100)) {
-                    tooClose = true;
+            for (const f of placedFlowers) {
+                // Sprawdzanie kolizji prostokątów (bounding box) z marginesem
+                if (!(x + flowerSize + padding < f.x || 
+                      x > f.x + flowerSize + padding || 
+                      y + flowerSize + padding < f.y || 
+                      y > f.y + flowerSize + padding)) {
+                    overlap = true;
                     break;
                 }
             }
-        } while (tooClose && attempts < 100);
+        } while (overlap && attempts < 150);
 
-        flowers.push({ x, y });
+        if (!overlap) {
+            placedFlowers.push({ x, y });
 
-        const flower = document.createElement('div');
-        flower.classList.add('flower');
-        flower.style.top = `${y}vh`;
-        flower.style.left = `${x}vw`;
-        flower.style.transform = `scale(${Math.random() * 0.4 + 0.6}) rotate(${Math.random() * 360}deg)`;
-        container.appendChild(flower);
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.style.left = `${x}px`;
+            flower.style.top = `${y}px`;
+            // Zachowujemy losowe skalowanie i obrót
+            flower.style.transform = `scale(${Math.random() * 0.4 + 0.6}) rotate(${Math.random() * 360}deg)`;
+            container.appendChild(flower);
+        }
     }
 
     // --- Player Logic ---
