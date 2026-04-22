@@ -12,7 +12,7 @@
     
     <!-- Google Fonts: Courier Prime -->
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.4">
+    <link rel="stylesheet" href="style.css?v=2.5">
 </head>
 <body>
     <div class="container">
@@ -22,6 +22,7 @@
     <!-- Ekran blokady PIN -->
     <div id="pin-screen" class="pin-screen">
         <div class="pin-header">Kiedy się poznaliśmy?</div>
+        <div id="hint-text" class="pin-hint">Pierwszy dzień ośrodka</div>
         
         <div id="pin-dots" class="pin-dots">
             <div class="dot"></div>
@@ -49,7 +50,9 @@
                 <button class="pin-btn" data-value="9">9</button>
             </div>
             <div class="pin-row">
-                <div class="pin-btn-empty"></div>
+                <button id="pin-hint-btn" class="pin-btn-action">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"></path></svg>
+                </button>
                 <button class="pin-btn" data-value="0">0</button>
                 <button id="pin-delete" class="pin-btn-action">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><line x1="18" y1="9" x2="12" y2="15"></line><line x1="12" y1="9" x2="18" y2="15"></line></svg>
@@ -81,6 +84,6 @@
 
     <audio id="audio" src="assets/audio.mp3"></audio>
 
-    <script src="script.js?v=2.4"></script>
+    <script src="script.js?v=2.5"></script>
 </body>
 </html>

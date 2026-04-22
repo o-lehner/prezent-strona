@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const pinDots = document.querySelectorAll('.dot');
     const keyboardBtns = document.querySelectorAll('.pin-btn');
     const deleteBtn = document.getElementById('pin-delete');
+    const hintBtn = document.getElementById('pin-hint-btn');
+    const hintText = document.getElementById('hint-text');
     const pinDotsContainer = document.getElementById('pin-dots');
 
     const CORRECT_PIN = "070226";
@@ -141,6 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
             enteredPin = enteredPin.slice(0, -1);
             updateDots();
         }
+    });
+
+    hintBtn.addEventListener('click', () => {
+        hintText.classList.toggle('visible');
     });
 
     // --- Helper Format Time ---
