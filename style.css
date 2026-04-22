@@ -293,3 +293,75 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* --- MODAL STYLES --- */
+.hint-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(240, 240, 240, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.hint-modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.hint-modal {
+    width: 85%;
+    max-width: 320px;
+    background-color: var(--bg-color);
+    padding: 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 20px 20px 60px #cbcbcb, 
+               -20px -20px 60px #ffffff;
+}
+
+.modal-text {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.modal-btns {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.modal-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 6px 6px 12px #cbcbcb, 
+               -6px -6px 12px #ffffff;
+    transition: all 0.2s ease;
+}
+
+.modal-btn:active {
+    box-shadow: inset 4px 4px 8px #cbcbcb, 
+                inset -4px -4px 8px #ffffff;
+    transform: scale(0.95);
+}
+
+.modal-btn svg {
+    width: 24px;
+    height: 24px;
+}

@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteBtn = document.getElementById('pin-delete');
     const hintBtn = document.getElementById('pin-hint-btn');
     const hintText = document.getElementById('hint-text');
+    const hintModal = document.getElementById('hint-modal');
+    const modalYes = document.getElementById('modal-yes');
+    const modalNo = document.getElementById('modal-no');
     const pinDotsContainer = document.getElementById('pin-dots');
 
     const CORRECT_PIN = "070226";
@@ -146,7 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     hintBtn.addEventListener('click', () => {
-        hintText.classList.toggle('visible');
+        hintModal.classList.remove('hidden');
+    });
+
+    modalNo.addEventListener('click', () => {
+        hintModal.classList.add('hidden');
+    });
+
+    modalYes.addEventListener('click', () => {
+        hintModal.classList.add('hidden');
+        hintText.classList.add('visible');
     });
 
     // --- Helper Format Time ---
